@@ -9,5 +9,11 @@ int main(int, char**)
 
     ConfigProto proto;
     conf.Draw(proto);
+
+    if (argc > 1) {
+        while(true) {
+            conf.Draw(proto);
+        }
+    }
     return 0;
 }

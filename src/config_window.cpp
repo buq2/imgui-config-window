@@ -116,6 +116,8 @@ bool ConfigWindow::Initialize() {
     // Setup Platform/Renderer bindings
     ImGui_ImplSDL2_InitForOpenGL(p_->window, p_->gl_context);
     ImGui_ImplOpenGL3_Init(glsl_version);
+
+    return true;
 }
 
 void ConfigWindow::Uninit()

@@ -19,6 +19,9 @@ class IMGUIConfigWindowConan(ConanFile):
 
     def configure(self):
         self.options["sdl2"].iconv = False
+        self.options["sdl2"].pulse = False
+        self.options["sdl2"].alsa = False
+        self.options["sdl2"].xinerama = False
     
     def _configure_cmake(self):
         if self._cmake:
