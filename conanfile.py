@@ -16,6 +16,9 @@ class IMGUIConfigWindowConan(ConanFile):
         "protoc_installer/[>3.0.0]@bincrafters/stable"]
         
     _cmake = None
+
+    def configure(self):
+        self.options["sdl2"].iconv = False
     
     def _configure_cmake(self):
         if self._cmake:
