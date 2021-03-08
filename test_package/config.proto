@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+message SubMessage {
+    enum TestEnum {
+        kEnum1 = 1;
+        kEnum2 = 2;
+    }
+    optional string new_string = 1 [default = "blaah"];
+    optional TestEnum enumi = 2 [default = kEnum1];
+}
+
+message ConfigProto {
+    optional string text = 1 [default = "text"];
+    optional double vald = 2 [default = 3.0];
+    optional SubMessage msg = 5;
+    optional float valf = 3 [default = 3.5];
+    optional bool booli = 4 [default = false];
+
+}
