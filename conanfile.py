@@ -1,4 +1,5 @@
 from conans import ConanFile, CMake, tools
+from sys import platform
 
 class IMGUIConfigWindowConan(ConanFile):
     name = "imgui-config-window"
@@ -8,7 +9,17 @@ class IMGUIConfigWindowConan(ConanFile):
     description = "https://github.com/buq2/imgui-config-window"
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False]}
-    default_options = {"shared": False}
+    default_options = {
+        "shared": False,
+        "sdl2:iconv":False
+    }
+
+    if platform == "linux" or platform == "linux2":
+        # Would like to know better way to handle this with sdl2
+        default_options["sdl2:pulse"] = False
+        default_options["sdl2:alsa"] = False
+        default_options["sdl2:xinerama"] = False
+
     generators = "cmake"
     topics = ("conan", "imgui", "gui", "graphical", "sdl2")
     requires = ["imgui/[>1.70]", "sdl2/[>2.0.0]@bincrafters/stable",
@@ -17,12 +28,6 @@ class IMGUIConfigWindowConan(ConanFile):
         
     _cmake = None
 
-    def configure(self):
-        self.options["sdl2"].iconv = False
-        self.options["sdl2"].pulse = False
-        self.options["sdl2"].alsa = False
-        self.options["sdl2"].xinerama = False
-    
     def _configure_cmake(self):
         if self._cmake:
             return self._cmake
