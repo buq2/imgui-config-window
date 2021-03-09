@@ -2,7 +2,7 @@
 #include "config.pb.h"
 
 // Main code
-int main(int, char**)
+int main(int argc, char**)
 {
     ConfigWindow conf;
     conf.Initialize();
